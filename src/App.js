@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { ThemeContext } from "./context/ThemeContext";
+import { useContext } from "react";
+import { IoMoon } from "react-icons/io5";
+import { CiLight } from "react-icons/ci";
 function App() {
+  const { toggleTheme, theme } = useContext(ThemeContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div
+      className={`h-screen w-full flex justify-center items-center ${
+        theme === "light" ? "bg-white" : "bg-black"
+      }`}
+    >
+      <div>
+        <div
+          onClick={toggleTheme}
+          className={`py-2 px-3 rounded-[5px] ${
+            theme === "light" ? "bg-black text-white" : "bg-white text-black"
+          }`}
         >
-          Learn React
-        </a>
-      </header>
+          {theme === "light" ? <IoMoon /> : <CiLight />}
+        </div>
+      </div>
     </div>
   );
 }
